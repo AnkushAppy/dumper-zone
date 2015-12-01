@@ -7,8 +7,8 @@ import xlsxwriter
 start_time = time.time()
 lookup_table = 'test_1.xlsx'
 data_table = 'test_1_copy.xlsx'
-book_vl = xlrd.open_workbook(lookup_table)
-book_dt = xlrd.open_workbook(data_table)
+book_vl = xlrd.open_workbook(lookup_table)    #reading file
+book_dt = xlrd.open_workbook(data_table)     #reading file
 sheet_vl = book_vl.sheet_by_index(0)
 sheet_dt = book_dt.sheet_by_index(0)
 temp_book = xlsxwriter.Workbook('example.xlsx')
