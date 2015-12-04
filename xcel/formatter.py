@@ -10,6 +10,7 @@ def abc_generator():
 
 def last_column_name_in_alpha(col_length):
 	#column name A,B,Z.........AA,AB,AC........AZ,BA.....ZZ
+	#to get name of last column in alphabet format
 	column_name = abc_generator()
 	return 'B:' + column_name[col_length/26] + column_name[col_length%26]
 
@@ -31,6 +32,7 @@ def sheet_formats():
 
 def date_finder(date_string):
 	# if date then return true else false
+	# code yet to be written.......
 	return True
 
 
@@ -40,18 +42,19 @@ book_opened_in_xlrd = xlrd.open_workbook(data_table)
 sheet_opened_in_xlrd = book_opened_in_xlrd.sheet_by_index(0)
 row_length = sheet_opened_in_xlrd.nrows
 col_length = sheet_opened_in_xlrd.ncols
-#opening file to write
+#opening new file to write
+# we can't write on existing file thats why we need to create another file and copy content of file we just read. 
 temp_book = xlsxwriter.Workbook('example.xlsx')
 worksheet = temp_book.add_worksheet()
-#setting row height
+#setting row height, applicable on worksheet
 for y in range(row_length+1):
 	worksheet.set_row(y,30)
-#setting column width
+#setting column width, applicable on worksheet
 worksheet.set_column(last_column_name_in_alpha(col_length), 30)
 worksheet.set_column('A:A', 10)
 # parameters are (first row, how many row) : freeze pane
 worksheet.freeze_panes(1, 0)
-#collecting different formats
+#collecting different formats.....function sheet_format() is called
 format_for_sno, format_for_first_column, simple_format = sheet_formats()
 
 #s.no. at 0,0 # numbering at 0th column 
